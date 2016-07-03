@@ -1,0 +1,110 @@
+name: inkscape
+version: "0.91"
+summary: Vector-based drawing program
+description: |
+ Inkscape is an illustration editor which has everything needed to
+ create professional-quality computer art. You can use it to make
+ diagrams and illustrations, technical drawings, web graphics, clip art,
+ icons and logos. A collection of hands-on tutorials show you how to
+ combine lines, shapes and text of different types and styles to build
+ up a picture.
+
+ A selection of powerful vector graphics editing tools comes as
+ standard. There is excellent support for paths, gradients, layers,
+ alpha transparency and text flow control. An extensive library of
+ filters allow you to apply realistic effects and extensions allow you
+ to work with bitmaps, barcodes and printing marks, amongst other things.
+
+ Most of the common vector formats are supported, including PDF, Adobe
+ Illustrator and AutoCAD files, and it has unrivalled support for the
+ SVG web graphics standard.
+confinement: devmode
+
+apps:
+  inkscape:
+    command: desktop-launch inkscape
+    plugs: [home, x11, unity7, gsettings]
+
+parts:
+  inkscape:
+    source: https://inkscape.org/en/gallery/item/3860/inkscape-0.91.tar.bz2
+    plugin: autotools
+    configflags: [ --prefix=/snap/inkscape/current/usr, --with-gnome-vfs, --enable-lcms ]
+    organize:
+      snap/inkscape/current/usr: usr
+    build-packages:
+      - intltool
+      - libaspell-dev
+      - libboost-dev
+      - libcdr-dev
+      - libgc-dev
+      - libgtkmm-2.4-dev
+      - liblcms2-dev
+      - libmagick++-dev
+      - libpoppler-glib-dev
+      - libpoppler-private-dev
+      - libgnomevfs2-dev
+      - libgsl-dev
+      - libpopt-dev
+      - libvisio-dev
+      - libwpg-dev
+      - libxml2-dev
+      - libxslt1-dev
+
+  deb:
+    plugin: nil
+    after:
+      - desktop/gtk2
+    stage-packages:
+      - libgtk2.0-0
+      - libgtk2.0-bin
+      - libgdk-pixbuf2.0-0
+      - light-themes
+      - shared-mime-info
+      - unity-gtk2-module
+      - libgnomevfs2-0
+      - libgnomevfs2-common
+      - python
+      - libaspell15
+      - libatkmm-1.6-1v5
+      - libc6
+      - libcairo2
+      - libcairomm-1.0-1v5
+      - libcdr-0.1-1
+      - libfontconfig1
+      - libfreetype6
+      - libgc1c2
+      - libgcc1
+      - libglib2.0-0
+      - libglibmm-2.4-1v5
+      - libgomp1
+      - libgsl2
+      - libgtkmm-2.4-1v5
+      - libgtkspell0
+      - libjpeg8
+      - liblcms2-2
+      - libmagick++-6.q16-5v5
+      - libpango-1.0-0
+      - libpangocairo-1.0-0
+      - libpangoft2-1.0-0
+      - libpangomm-1.4-1v5
+      - libpng12-0
+      - libpoppler-glib8
+      - libpoppler58
+      - libpopt0
+      - librevenge-0.0-0
+      - libsigc++-2.0-0v5
+      - libstdc++6
+      - libvisio-0.1-1
+      - libwpg-0.3-3
+      - libx11-6
+      - libxml2
+      - libxslt1.1
+      - zlib1g
+      # These do not work, still have "Failed to load module" warnings
+      #- libcanberra-gtk0
+      #- libcanberra-gtk3-0
+      #- libgail-common
+      #- overlay-scrollbar-gtk2
+      #- gnome-vfs-2.0
+
